@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *view;
 
 @end

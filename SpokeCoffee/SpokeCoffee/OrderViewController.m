@@ -24,7 +24,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    
     self.user = [UserClass getInstance];
+    
+    
+    // navigation
+    [self.navigationController setNavigationBarHidden:NO];
+    
 }
 
 

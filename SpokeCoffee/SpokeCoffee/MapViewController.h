@@ -11,8 +11,14 @@
 #import <MapKit/MapKit.h>
 
 
-@interface MapViewController : ViewController
+@interface MapViewController : UIViewController
+<MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
+- (IBAction)touchEditButton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+- (IBAction)touchCoffeeButton:(id)sender;
 
 @end

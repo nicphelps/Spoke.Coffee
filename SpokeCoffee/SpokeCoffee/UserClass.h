@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, retain) NSString *token;
 @property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSNumber *latitude;
+@property (nonatomic, retain) NSNumber *longitude;
 
 +(UserClass*)getInstance;
 

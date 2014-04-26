@@ -12,10 +12,11 @@
     
 }
 
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *phone;
-@property(nonatomic,strong)NSString *email;
-@property(nonatomic,retain)NSString *token;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, retain) NSString *token;
+@property (nonatomic, retain) NSString *address;
 
 +(UserClass*)getInstance;
 

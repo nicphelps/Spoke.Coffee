@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "MapViewController.h"
+#import "UserClass.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -27,7 +28,11 @@
 
 @interface LoginViewController ()
 
+@property UserClass *user;
+
 @end
+
+
 
 @implementation LoginViewController
 
@@ -62,7 +67,8 @@
     self.facebookLoginButton.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     self.facebookLoginButton.delegate = self;
     
-    
+    // user class
+    self.user = [UserClass getInstance];
     
     
 }
@@ -115,7 +121,12 @@
         
     } else {
         
-        NSLog(@"logging in");
+        if (!FBSession.activeSession.isOpen) {
+            
+            self.user.name = self.nameTextField.text;
+            self.user.phone = self.phoneTextField.text;
+            self.user.email = self.emailTextField.text;
+        }
         
         UIStoryboard *storyboard;
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

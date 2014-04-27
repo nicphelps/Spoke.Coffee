@@ -1,7 +1,4 @@
 platform :ios, '7.0'
-
-xcodeproj 'SpokeCoffee'
-
-pod 'Facebook-iOS-SDK', '~> 3.11.0'
+pod 'Facebook-iOS-SDK',     '~> 3.11.0'
 pod 'AFNetworking', '~> 2.0'
-
+pod 'Stripe', :git => 'https://github.com/stripe/stripe-ios.git'

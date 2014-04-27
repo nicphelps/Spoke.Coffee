@@ -19,13 +19,23 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Facebook-iOS-SDK (3.11.1)
+  - PaymentKit (1.0.5)
+  - Stripe (1.1.2):
+    - PaymentKit (~> 1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Facebook-iOS-SDK (~> 3.11.0)
+  - Stripe (from `https://github.com/stripe/stripe-ios.git`)
+
+EXTERNAL SOURCES:
+  Stripe:
+    :git: https://github.com/stripe/stripe-ios.git
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   Facebook-iOS-SDK: 1f753fe932c2602359114a662cd9abdc2dba48f3
+  PaymentKit: 92df7c2fb4fb3b4e0c3f5fb8c8e75cc528025126
+  Stripe: 339e147445ef0c705627cca72088fd9610f7ebd1
 
 COCOAPODS: 0.32.1

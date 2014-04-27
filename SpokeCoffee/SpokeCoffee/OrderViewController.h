@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIView *view;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+
+@property (weak, nonatomic) IBOutlet UITextView *deliveryTextView;
+- (IBAction)touchPaymentButton:(id)sender;
 
 @end

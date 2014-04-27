@@ -26,7 +26,7 @@
 @property (strong, nonatomic) CLLocation *location;
 
 @property (strong, nonatomic) UserClass *user;
-
+@property (strong, nonatomic) MKUserLocation *userLocation;
 
 
 @end
@@ -56,6 +56,14 @@
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
 
+    // text fields
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
+    
 
 }
 
@@ -80,6 +88,8 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    
+    self.userLocation = userLocation;
     
     // Set map region
     CLLocationCoordinate2D loc = [userLocation coordinate];
@@ -128,6 +138,8 @@
                 NSLog(@"placemark is nil");
             }
             
+            
+            
             if ((userLocation.coordinate.latitude != 0.0) && (userLocation.coordinate.longitude != 0.0)) {
                 dispatch_once(&centerMapFirstTime, ^{
                     [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
@@ -170,6 +182,9 @@
 
 - (IBAction)touchCoffeeButton:(id)sender {
     
+    self.user.address = self.addressTextField.text;
+    self.user.latitude = [[NSNumber alloc] initWithDouble:self.userLocation.coordinate.latitude];
+    self.user.longitude = [[NSNumber alloc] initWithDouble:self.userLocation.coordinate.longitude];
     
         UIStoryboard *storyboard;
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )

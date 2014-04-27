@@ -17,44 +17,6 @@
 		BB19C597190C247B0010D0DC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C596190C247B0010D0DC /* MobileCoreServices.framework */; };
 		BB19C599190C248A0010D0DC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C598190C248A0010D0DC /* libz.dylib */; };
 		BB19C59B190C413E0010D0DC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C59A190C413E0010D0DC /* CoreLocation.framework */; };
-		BB19C5FA190C56910010D0DC /* STPCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C59E190C56900010D0DC /* STPCard.m */; };
-		BB19C5FB190C56910010D0DC /* STPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5A0190C56900010D0DC /* STPToken.m */; };
-		BB19C5FC190C56910010D0DC /* STPView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5A2190C56900010D0DC /* STPView.m */; };
-		BB19C5FD190C56910010D0DC /* Stripe.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5A5190C56900010D0DC /* Stripe.m */; };
-		BB19C5FE190C56910010D0DC /* StripeError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5A7190C56900010D0DC /* StripeError.m */; };
-		BB19C5FF190C56910010D0DC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5AA190C56900010D0DC /* .gitignore */; };
-		BB19C600190C56910010D0DC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5AB190C56900010D0DC /* LICENSE */; };
-		BB19C601190C56910010D0DC /* PKAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5AE190C56900010D0DC /* PKAddressZip.m */; };
-		BB19C602190C56910010D0DC /* PKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5B0190C56900010D0DC /* PKCard.m */; };
-		BB19C603190C56910010D0DC /* PKCardCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5B2190C56900010D0DC /* PKCardCVC.m */; };
-		BB19C604190C56910010D0DC /* PKCardExpiry.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5B4190C56900010D0DC /* PKCardExpiry.m */; };
-		BB19C605190C56910010D0DC /* PKCardNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5B6190C56900010D0DC /* PKCardNumber.m */; };
-		BB19C606190C56910010D0DC /* PKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5B9190C56900010D0DC /* PKTextField.m */; };
-		BB19C607190C56910010D0DC /* PKUSAddressZip.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5BB190C56900010D0DC /* PKUSAddressZip.m */; };
-		BB19C608190C56910010D0DC /* PKView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C5BD190C56900010D0DC /* PKView.m */; };
-		BB19C609190C56910010D0DC /* amex.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C0190C56900010D0DC /* amex.png */; };
-		BB19C60A190C56910010D0DC /* amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C1190C56900010D0DC /* amex@2x.png */; };
-		BB19C60B190C56910010D0DC /* cvc-amex.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C2190C56900010D0DC /* cvc-amex.png */; };
-		BB19C60C190C56910010D0DC /* cvc-amex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C3190C56900010D0DC /* cvc-amex@2x.png */; };
-		BB19C60D190C56910010D0DC /* cvc.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C4190C56900010D0DC /* cvc.png */; };
-		BB19C60E190C56910010D0DC /* cvc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C5190C56900010D0DC /* cvc@2x.png */; };
-		BB19C60F190C56910010D0DC /* diners.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C6190C56900010D0DC /* diners.png */; };
-		BB19C610190C56910010D0DC /* diners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C7190C56900010D0DC /* diners@2x.png */; };
-		BB19C611190C56910010D0DC /* discover.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C8190C56900010D0DC /* discover.png */; };
-		BB19C612190C56910010D0DC /* discover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5C9190C56900010D0DC /* discover@2x.png */; };
-		BB19C613190C56910010D0DC /* jcb.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CA190C56900010D0DC /* jcb.png */; };
-		BB19C614190C56910010D0DC /* jcb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CB190C56900010D0DC /* jcb@2x.png */; };
-		BB19C615190C56910010D0DC /* mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CC190C56900010D0DC /* mastercard.png */; };
-		BB19C616190C56910010D0DC /* mastercard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CD190C56900010D0DC /* mastercard@2x.png */; };
-		BB19C617190C56910010D0DC /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CE190C56900010D0DC /* placeholder.png */; };
-		BB19C618190C56910010D0DC /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5CF190C56900010D0DC /* placeholder@2x.png */; };
-		BB19C619190C56910010D0DC /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5D0190C56900010D0DC /* visa.png */; };
-		BB19C61A190C56910010D0DC /* visa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5D1190C56900010D0DC /* visa@2x.png */; };
-		BB19C61B190C56910010D0DC /* gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5D2190C56900010D0DC /* gradient@2x.png */; };
-		BB19C61C190C56910010D0DC /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5D3190C56900010D0DC /* textfield.png */; };
-		BB19C61D190C56910010D0DC /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5D4190C56900010D0DC /* textfield@2x.png */; };
-		BB19C62F190C56910010D0DC /* PaymentKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5F8190C56910010D0DC /* PaymentKit.podspec */; };
-		BB19C630190C56910010D0DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BB19C5F9190C56910010D0DC /* README.md */; };
 		BB19C638190C56AC0010D0DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C637190C56AC0010D0DC /* QuartzCore.framework */; };
 		BB19C63E190C56F20010D0DC /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C63D190C56F20010D0DC /* PaymentViewController.m */; };
 		BB8D5B95190B832800F39D98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8D5B94190B832800F39D98 /* Foundation.framework */; };
@@ -106,59 +68,6 @@
 		BB19C596190C247B0010D0DC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		BB19C598190C248A0010D0DC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BB19C59A190C413E0010D0DC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		BB19C59D190C56900010D0DC /* STPCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPCard.h; sourceTree = "<group>"; };
-		BB19C59E190C56900010D0DC /* STPCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPCard.m; sourceTree = "<group>"; };
-		BB19C59F190C56900010D0DC /* STPToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPToken.h; sourceTree = "<group>"; };
-		BB19C5A0190C56900010D0DC /* STPToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPToken.m; sourceTree = "<group>"; };
-		BB19C5A1190C56900010D0DC /* STPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPView.h; sourceTree = "<group>"; };
-		BB19C5A2190C56900010D0DC /* STPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPView.m; sourceTree = "<group>"; };
-		BB19C5A3190C56900010D0DC /* Stripe-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stripe-Prefix.pch"; sourceTree = "<group>"; };
-		BB19C5A4190C56900010D0DC /* Stripe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stripe.h; sourceTree = "<group>"; };
-		BB19C5A5190C56900010D0DC /* Stripe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stripe.m; sourceTree = "<group>"; };
-		BB19C5A6190C56900010D0DC /* StripeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StripeError.h; sourceTree = "<group>"; };
-		BB19C5A7190C56900010D0DC /* StripeError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StripeError.m; sourceTree = "<group>"; };
-		BB19C5AA190C56900010D0DC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		BB19C5AB190C56900010D0DC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		BB19C5AD190C56900010D0DC /* PKAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAddressZip.h; sourceTree = "<group>"; };
-		BB19C5AE190C56900010D0DC /* PKAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAddressZip.m; sourceTree = "<group>"; };
-		BB19C5AF190C56900010D0DC /* PKCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCard.h; sourceTree = "<group>"; };
-		BB19C5B0190C56900010D0DC /* PKCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCard.m; sourceTree = "<group>"; };
-		BB19C5B1190C56900010D0DC /* PKCardCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCardCVC.h; sourceTree = "<group>"; };
-		BB19C5B2190C56900010D0DC /* PKCardCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCardCVC.m; sourceTree = "<group>"; };
-		BB19C5B3190C56900010D0DC /* PKCardExpiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCardExpiry.h; sourceTree = "<group>"; };
-		BB19C5B4190C56900010D0DC /* PKCardExpiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCardExpiry.m; sourceTree = "<group>"; };
-		BB19C5B5190C56900010D0DC /* PKCardNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCardNumber.h; sourceTree = "<group>"; };
-		BB19C5B6190C56900010D0DC /* PKCardNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCardNumber.m; sourceTree = "<group>"; };
-		BB19C5B7190C56900010D0DC /* PKCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCardType.h; sourceTree = "<group>"; };
-		BB19C5B8190C56900010D0DC /* PKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTextField.h; sourceTree = "<group>"; };
-		BB19C5B9190C56900010D0DC /* PKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTextField.m; sourceTree = "<group>"; };
-		BB19C5BA190C56900010D0DC /* PKUSAddressZip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKUSAddressZip.h; sourceTree = "<group>"; };
-		BB19C5BB190C56900010D0DC /* PKUSAddressZip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKUSAddressZip.m; sourceTree = "<group>"; };
-		BB19C5BC190C56900010D0DC /* PKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKView.h; sourceTree = "<group>"; };
-		BB19C5BD190C56900010D0DC /* PKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKView.m; sourceTree = "<group>"; };
-		BB19C5C0190C56900010D0DC /* amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amex.png; sourceTree = "<group>"; };
-		BB19C5C1190C56900010D0DC /* amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amex@2x.png"; sourceTree = "<group>"; };
-		BB19C5C2190C56900010D0DC /* cvc-amex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex.png"; sourceTree = "<group>"; };
-		BB19C5C3190C56900010D0DC /* cvc-amex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc-amex@2x.png"; sourceTree = "<group>"; };
-		BB19C5C4190C56900010D0DC /* cvc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvc.png; sourceTree = "<group>"; };
-		BB19C5C5190C56900010D0DC /* cvc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cvc@2x.png"; sourceTree = "<group>"; };
-		BB19C5C6190C56900010D0DC /* diners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diners.png; sourceTree = "<group>"; };
-		BB19C5C7190C56900010D0DC /* diners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diners@2x.png"; sourceTree = "<group>"; };
-		BB19C5C8190C56900010D0DC /* discover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover.png; sourceTree = "<group>"; };
-		BB19C5C9190C56900010D0DC /* discover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discover@2x.png"; sourceTree = "<group>"; };
-		BB19C5CA190C56900010D0DC /* jcb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jcb.png; sourceTree = "<group>"; };
-		BB19C5CB190C56900010D0DC /* jcb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jcb@2x.png"; sourceTree = "<group>"; };
-		BB19C5CC190C56900010D0DC /* mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mastercard.png; sourceTree = "<group>"; };
-		BB19C5CD190C56900010D0DC /* mastercard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mastercard@2x.png"; sourceTree = "<group>"; };
-		BB19C5CE190C56900010D0DC /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		BB19C5CF190C56900010D0DC /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
-		BB19C5D0190C56900010D0DC /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
-		BB19C5D1190C56900010D0DC /* visa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa@2x.png"; sourceTree = "<group>"; };
-		BB19C5D2190C56900010D0DC /* gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient@2x.png"; sourceTree = "<group>"; };
-		BB19C5D3190C56900010D0DC /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
-		BB19C5D4190C56900010D0DC /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
-		BB19C5F8190C56910010D0DC /* PaymentKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PaymentKit.podspec; sourceTree = "<group>"; };
-		BB19C5F9190C56910010D0DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		BB19C637190C56AC0010D0DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB19C63C190C56F20010D0DC /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		BB19C63D190C56F20010D0DC /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
@@ -230,107 +139,6 @@
 			name = NSObjects;
 			sourceTree = "<group>";
 		};
-		BB19C59C190C56900010D0DC /* Stripe */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C59D190C56900010D0DC /* STPCard.h */,
-				BB19C59E190C56900010D0DC /* STPCard.m */,
-				BB19C59F190C56900010D0DC /* STPToken.h */,
-				BB19C5A0190C56900010D0DC /* STPToken.m */,
-				BB19C5A1190C56900010D0DC /* STPView.h */,
-				BB19C5A2190C56900010D0DC /* STPView.m */,
-				BB19C5A3190C56900010D0DC /* Stripe-Prefix.pch */,
-				BB19C5A4190C56900010D0DC /* Stripe.h */,
-				BB19C5A5190C56900010D0DC /* Stripe.m */,
-				BB19C5A6190C56900010D0DC /* StripeError.h */,
-				BB19C5A7190C56900010D0DC /* StripeError.m */,
-				BB19C5A8190C56900010D0DC /* Vendor */,
-			);
-			name = Stripe;
-			path = ../Stripe;
-			sourceTree = "<group>";
-		};
-		BB19C5A8190C56900010D0DC /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C5A9190C56900010D0DC /* PaymentKit */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
-		BB19C5A9190C56900010D0DC /* PaymentKit */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C5AA190C56900010D0DC /* .gitignore */,
-				BB19C5AB190C56900010D0DC /* LICENSE */,
-				BB19C5AC190C56900010D0DC /* PaymentKit */,
-				BB19C5F8190C56910010D0DC /* PaymentKit.podspec */,
-				BB19C5F9190C56910010D0DC /* README.md */,
-			);
-			path = PaymentKit;
-			sourceTree = "<group>";
-		};
-		BB19C5AC190C56900010D0DC /* PaymentKit */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C5AD190C56900010D0DC /* PKAddressZip.h */,
-				BB19C5AE190C56900010D0DC /* PKAddressZip.m */,
-				BB19C5AF190C56900010D0DC /* PKCard.h */,
-				BB19C5B0190C56900010D0DC /* PKCard.m */,
-				BB19C5B1190C56900010D0DC /* PKCardCVC.h */,
-				BB19C5B2190C56900010D0DC /* PKCardCVC.m */,
-				BB19C5B3190C56900010D0DC /* PKCardExpiry.h */,
-				BB19C5B4190C56900010D0DC /* PKCardExpiry.m */,
-				BB19C5B5190C56900010D0DC /* PKCardNumber.h */,
-				BB19C5B6190C56900010D0DC /* PKCardNumber.m */,
-				BB19C5B7190C56900010D0DC /* PKCardType.h */,
-				BB19C5B8190C56900010D0DC /* PKTextField.h */,
-				BB19C5B9190C56900010D0DC /* PKTextField.m */,
-				BB19C5BA190C56900010D0DC /* PKUSAddressZip.h */,
-				BB19C5BB190C56900010D0DC /* PKUSAddressZip.m */,
-				BB19C5BC190C56900010D0DC /* PKView.h */,
-				BB19C5BD190C56900010D0DC /* PKView.m */,
-				BB19C5BE190C56900010D0DC /* Resources */,
-			);
-			path = PaymentKit;
-			sourceTree = "<group>";
-		};
-		BB19C5BE190C56900010D0DC /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C5BF190C56900010D0DC /* Cards */,
-				BB19C5D2190C56900010D0DC /* gradient@2x.png */,
-				BB19C5D3190C56900010D0DC /* textfield.png */,
-				BB19C5D4190C56900010D0DC /* textfield@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		BB19C5BF190C56900010D0DC /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				BB19C5C0190C56900010D0DC /* amex.png */,
-				BB19C5C1190C56900010D0DC /* amex@2x.png */,
-				BB19C5C2190C56900010D0DC /* cvc-amex.png */,
-				BB19C5C3190C56900010D0DC /* cvc-amex@2x.png */,
-				BB19C5C4190C56900010D0DC /* cvc.png */,
-				BB19C5C5190C56900010D0DC /* cvc@2x.png */,
-				BB19C5C6190C56900010D0DC /* diners.png */,
-				BB19C5C7190C56900010D0DC /* diners@2x.png */,
-				BB19C5C8190C56900010D0DC /* discover.png */,
-				BB19C5C9190C56900010D0DC /* discover@2x.png */,
-				BB19C5CA190C56900010D0DC /* jcb.png */,
-				BB19C5CB190C56900010D0DC /* jcb@2x.png */,
-				BB19C5CC190C56900010D0DC /* mastercard.png */,
-				BB19C5CD190C56900010D0DC /* mastercard@2x.png */,
-				BB19C5CE190C56900010D0DC /* placeholder.png */,
-				BB19C5CF190C56900010D0DC /* placeholder@2x.png */,
-				BB19C5D0190C56900010D0DC /* visa.png */,
-				BB19C5D1190C56900010D0DC /* visa@2x.png */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
 		BB8D5B88190B832800F39D98 = {
 			isa = PBXGroup;
 			children = (
@@ -374,7 +182,6 @@
 		BB8D5B9A190B832800F39D98 /* SpokeCoffee */ = {
 			isa = PBXGroup;
 			children = (
-				BB19C59C190C56900010D0DC /* Stripe */,
 				BB19C56A190C21780010D0DC /* NSObjects */,
 				BB8D5BD4190B964C00F39D98 /* Assets */,
 				BB8D5BA3190B832800F39D98 /* AppDelegate.h */,
@@ -515,39 +322,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB19C60D190C56910010D0DC /* cvc.png in Resources */,
 				BB8D5BAB190B832800F39D98 /* Main_iPad.storyboard in Resources */,
-				BB19C619190C56910010D0DC /* visa.png in Resources */,
-				BB19C614190C56910010D0DC /* jcb@2x.png in Resources */,
 				BB8D5BD2190B964500F39D98 /* background0.png in Resources */,
-				BB19C60E190C56910010D0DC /* cvc@2x.png in Resources */,
-				BB19C61B190C56910010D0DC /* gradient@2x.png in Resources */,
 				BB8D5BD1190B964500F39D98 /* logo0.png in Resources */,
 				BB8D5BB0190B832800F39D98 /* Images.xcassets in Resources */,
-				BB19C613190C56910010D0DC /* jcb.png in Resources */,
-				BB19C617190C56910010D0DC /* placeholder.png in Resources */,
-				BB19C60C190C56910010D0DC /* cvc-amex@2x.png in Resources */,
-				BB19C600190C56910010D0DC /* LICENSE in Resources */,
-				BB19C609190C56910010D0DC /* amex.png in Resources */,
-				BB19C610190C56910010D0DC /* diners@2x.png in Resources */,
-				BB19C616190C56910010D0DC /* mastercard@2x.png in Resources */,
-				BB19C615190C56910010D0DC /* mastercard.png in Resources */,
 				BB8D5BA8190B832800F39D98 /* Main_iPhone.storyboard in Resources */,
-				BB19C618190C56910010D0DC /* placeholder@2x.png in Resources */,
-				BB19C630190C56910010D0DC /* README.md in Resources */,
-				BB19C612190C56910010D0DC /* discover@2x.png in Resources */,
-				BB19C61A190C56910010D0DC /* visa@2x.png in Resources */,
-				BB19C62F190C56910010D0DC /* PaymentKit.podspec in Resources */,
-				BB19C60A190C56910010D0DC /* amex@2x.png in Resources */,
 				BB8D5BD0190B964500F39D98 /* logo1.png in Resources */,
 				BB8D5BD3190B964500F39D98 /* spokecoffee.jpeg in Resources */,
-				BB19C5FF190C56910010D0DC /* .gitignore in Resources */,
-				BB19C61C190C56910010D0DC /* textfield.png in Resources */,
-				BB19C60F190C56910010D0DC /* diners.png in Resources */,
-				BB19C61D190C56910010D0DC /* textfield@2x.png in Resources */,
 				BB8D5B9F190B832800F39D98 /* InfoPlist.strings in Resources */,
-				BB19C60B190C56910010D0DC /* cvc-amex.png in Resources */,
-				BB19C611190C56910010D0DC /* discover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,27 +381,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB19C601190C56910010D0DC /* PKAddressZip.m in Sources */,
-				BB19C5FC190C56910010D0DC /* STPView.m in Sources */,
-				BB19C5FE190C56910010D0DC /* StripeError.m in Sources */,
 				BB19C55E190B9D620010D0DC /* LoginViewController.m in Sources */,
-				BB19C602190C56910010D0DC /* PKCard.m in Sources */,
-				BB19C607190C56910010D0DC /* PKUSAddressZip.m in Sources */,
-				BB19C603190C56910010D0DC /* PKCardCVC.m in Sources */,
 				BB8D5BAE190B832800F39D98 /* ViewController.m in Sources */,
 				BB19C561190BA6C30010D0DC /* MapViewController.m in Sources */,
-				BB19C608190C56910010D0DC /* PKView.m in Sources */,
 				BB8D5BA5190B832800F39D98 /* AppDelegate.m in Sources */,
 				BB19C63E190C56F20010D0DC /* PaymentViewController.m in Sources */,
 				BB19C569190C19360010D0DC /* OrderViewController.m in Sources */,
-				BB19C5FA190C56910010D0DC /* STPCard.m in Sources */,
-				BB19C5FD190C56910010D0DC /* Stripe.m in Sources */,
-				BB19C5FB190C56910010D0DC /* STPToken.m in Sources */,
 				BB8D5BA1190B832800F39D98 /* main.m in Sources */,
-				BB19C606190C56910010D0DC /* PKTextField.m in Sources */,
 				BB19C566190C121C0010D0DC /* UserClass.m in Sources */,
-				BB19C605190C56910010D0DC /* PKCardNumber.m in Sources */,
-				BB19C604190C56910010D0DC /* PKCardExpiry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

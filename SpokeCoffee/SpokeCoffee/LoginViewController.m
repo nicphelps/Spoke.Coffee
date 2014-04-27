@@ -13,16 +13,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 
-/*
- spoke.coffee/charge post
- order[customer_name]
- order[customer_phone]
- order[delivery_instructions]
- stripeToken
- stripeEmail
- 
- should return 200 status and webpage in body
- */
+
 
 
 
@@ -80,6 +71,7 @@
     
     NSLog(@"Touched Login Button");
     
+    /*
     //validations
     if (self.nameTextField.text.length < 1) {
         
@@ -130,6 +122,24 @@
         [self presentViewController:mapViewController animated:NO completion:nil];
         
     }
+     */
+    
+    self.user.name = self.nameTextField.text;
+    self.user.phone = self.phoneTextField.text;
+    self.user.email = self.emailTextField.text;
+    
+    
+    UIStoryboard *storyboard;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+    }
+    
+    MapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
+    [self presentViewController:mapViewController animated:NO completion:nil];
+    
     
 }
 

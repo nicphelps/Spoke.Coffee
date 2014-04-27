@@ -15,6 +15,11 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *delivery_instructions;
+@property (nonatomic, strong) NSString *card_number;
+@property (nonatomic, strong) NSString *cvc_number;
+@property (nonatomic, strong) NSString *exp_month;
+@property (nonatomic, strong) NSString *exp_year;
 @property (nonatomic, retain) NSString *token;
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSNumber *latitude;

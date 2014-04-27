@@ -11,6 +11,15 @@
 
 @interface PaymentViewController : UIViewController <STPViewDelegate>
 
-@property STPView* stripeView;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *cardNumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *expMonthTextField;
+@property (weak, nonatomic) IBOutlet UITextField *expYearTextField;
+@property (weak, nonatomic) IBOutlet UITextField *cvcTextField;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
+
+- (IBAction)touchSubmitButton:(id)sender;
 
 @end

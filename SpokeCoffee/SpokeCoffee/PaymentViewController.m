@@ -7,10 +7,27 @@
 //
 
 #import "PaymentViewController.h"
-#define EXAMPLE_STRIPE_PUBLISHABLE_KEY @"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#import "Stripe.h"
+#import "UserClass.h"
+
+#import "AFNetworking.h"
+#import "AFURLSessionManager.h"
+#import <AFNetworking/AFURLConnectionOperation.h>
+
+#define STRIPE_PUBLISHABLE_KEY @"pk_test_QPlAOHwkAsMjQJE7RF7snZjx" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#define STRIPE_SECRET_KEY @"sk_test_zgeYzaqcE6YXyI6WvpLYJBun" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#define STRIPE_TEST_POST_URL @"http://spoke.coffee/charge"
+#define API_URL @"http://spoke.coffee/charge"
 
 
-@interface PaymentViewController ()
+@interface PaymentViewController () {
+    int statusCode;
+}
+
+@property (strong, nonatomic) STPCard* stripeCard;
+@property (nonatomic, strong) NSMutableData *receivedData;
+
+@property UserClass *user;
 
 
 @end
@@ -23,68 +40,428 @@
     // Do any additional setup after loading the view.
     
     
+    // init
+    self.user = [UserClass getInstance];
+    
+    /*
     self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
                                               andKey:@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"];
     self.stripeView.delegate = self;
     [self.view addSubview:self.stripeView];
+    */
+    
+    
+    // text fields
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
     
 }
 
 
 
-- (void)stripeView:(STPView *)view withCard:(PKCard *)card isValid:(BOOL)valid
-{
-    // Enable save button if the Checkout is valid
-    self.navigationItem.rightBarButtonItem.enabled = valid;
+/*
+ spoke.coffee/charge post
+ order[customer_name]
+ order[customer_phone]
+ order[delivery_instructions]
+ stripeToken
+ stripeEmail
+ 
+ should return 200 status and webpage in body
+ */
+
+
+
+# pragma mark - Post request
+
+- (void)performStripeOperation {
+    
+    /*
+    activityView.center=self.view.center;
+    [activityView startAnimating];
+    [self.view addSubview:activityView];
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    */
+    
+    
+
+    
+    
+    /*
+     spoke.coffee/charge post
+     order[customer_name]
+     order[customer_phone]
+     order[delivery_instructions]
+     order[delivery_address]
+     order[delivery_coordinates]
+     stripeToken
+     stripeEmail
+     
+     should return 200 status and webpage in body
+     */
+    
+    
+
+    /*
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"ios",@"true",
+                            self.user.name, @"order[customer_name]",
+                            self.user.phone, @"order[customer_phone]",
+                            self.user.address, @"order[delivery_address]",
+                            self.user.delivery_instructions, @"order[delivery_instructions]",
+                            coordinates, @"order[delivery_coordinates]",
+                            STRIPE_PUBLISHABLE_KEY, @"stripeToken",
+                            self.user.email, @"stripeEmail",
+                            nil];
+    
+    //http://spoke.coffee/charge?ios=true&username=order[customer_name]&self.user.phone=order[customer_phone]&self.user.address=order[delivery_address]&self.user.delivery_instructions=order[delivery_instructions]&coordinates=order[delivery_coordinates]&STRIPE_PUBLISHABLE_KEY=stripeToken&self.user.email=stripeEmail
+    */
+    
+    
+    NSString *coordinates = [self.user.latitude stringValue];
+    coordinates = [coordinates stringByAppendingString:@", "];
+    coordinates = [coordinates stringByAppendingString:[self.user.longitude stringValue]];
+    
+    
+
+    NSLog(@"name: %@\n, phone: %@\n, address: %@\n, instructions: %@\n, coordinates: %@\n, email: %@\n", self.user.name, self.user.phone, self.user.address, self.user.delivery_instructions, coordinates, self.user.email);
+    
+    
+
+    
+    
+    NSString *bodyData = @"?ios=true";
+    bodyData = [bodyData stringByAppendingString:@"&order[customer_name]="];
+    bodyData = [bodyData stringByAppendingString:self.user.name];
+    bodyData = [bodyData stringByAppendingString:@"&order[customer_phone]="];
+    bodyData = [bodyData stringByAppendingString:self.user.phone];
+    bodyData = [bodyData stringByAppendingString:@"&order[customer_address]="];
+    bodyData = [bodyData stringByAppendingString:self.user.address];
+    bodyData = [bodyData stringByAppendingString:@"&order[delivery_instructions]="];
+    bodyData = [bodyData stringByAppendingString:self.user.delivery_instructions];
+    bodyData = [bodyData stringByAppendingString:@"&order[delivery_coordinates]="];
+    bodyData = [bodyData stringByAppendingString:coordinates];
+    bodyData = [bodyData stringByAppendingString:@"&stripeToken="];
+    bodyData = [bodyData stringByAppendingString:STRIPE_PUBLISHABLE_KEY];
+    bodyData = [bodyData stringByAppendingString:@"&stripeEmail="];
+    bodyData = [bodyData stringByAppendingString:self.user.email];
+
+    
+    
+    
+    
+    NSString *urlString = [API_URL stringByAppendingString:bodyData];
+    
+    
+    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    // Set the request's content type to application/x-www-form-urlencoded
+    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    // Set the request's content type, method type, and body
+    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setHTTPBody:[bodyData dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
+    [connection start];//It will start delegates
+    
+     
 }
 
-- (IBAction)save:(id)sender
-{
-    // show spinner
     
-    [self.stripeView createToken:^(STPToken *token, NSError *error) {
-        //hide spinner
-        if (error) {
-            [self hasError:error];
+    
+#pragma mark - Connection delegate methods
+
+- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    
+    ///[activityView stopAnimating];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    
+    [self.receivedData setLength:0];
+    
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    self->statusCode = [httpResponse statusCode];
+    
+    NSLog(@"status code: %d", statusCode);
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
+    [self.receivedData appendData:d];
+}
+
+
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"error %@", error);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSString *responseText = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"response text %@", responseText);
+    
+    // convert to JSON
+    NSError *myError = nil;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    NSString *thisError = (NSString *)[[response valueForKey:@"errors"] description];
+    NSLog(@"this error: %@", thisError);
+    
+    if (thisError.length > 0 && thisError != nil) {
+        
+        NSString *errorWithoutSymbols = [thisError stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        NSString *string2 = [errorWithoutSymbols stringByReplacingOccurrencesOfString:@")" withString:@""];
+        errorWithoutSymbols = [string2 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        thisError = [errorWithoutSymbols stringByReplacingOccurrencesOfString:@"    " withString:@""];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure!"
+                                                        message:thisError
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Try Again."
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self showAlertWithMessage:thisError];
+        
+        
+    } else if ([responseText rangeOfString:@"first_name"].location != NSNotFound) {
+        
+        NSLog(@"contains first name");
+        
+        
+        NSArray *responseSplit = [responseText componentsSeparatedByString:@"\":\""];
+        
+        NSString *tokenString = [responseSplit objectAtIndex:[responseSplit count]-1];
+        NSString *token = [tokenString substringToIndex:[tokenString length]-3];
+        NSLog(@"token: %@", token);
+        
+        
+        NSString *nameString = [responseSplit objectAtIndex:1];
+        NSRange range = [nameString rangeOfString:@"\""];
+        
+        NSString *name = [nameString substringToIndex:range.location];
+        NSLog(@"name: %@", name);
+        
+        
+        
+        
+        
+        
+        if(self->statusCode == 201 || statusCode == 200) {
+            
+            NSLog(@"200");
         } else {
-            [self hasToken:token];
+            NSLog(@"not 200");
         }
-    }];
+    }
 }
 
-- (void)hasError:(NSError *)error
+
+
+
+
+- (BOOL)validateCustomerInfo {
+    
+
+    
+    //2. Validate card number, CVC, expMonth, expYear
+    NSError* error = nil;
+    [self.stripeCard validateCardReturningError:&error];
+    
+    //3
+    if (error) {
+        
+        
+        [self showAlertWithMessage:[error localizedDescription]];
+
+        /*
+        alert.message = [error localizedDescription];
+        [alert show];
+         
+         */
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+
+#pragma mark - Alert
+
+- (void)showAlertWithMessage:(NSString *)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait!"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Okay, cool."
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - Textfield animation and Keyboard Dismissal
+
+
+-(void)dismissKeyboard {
+    [self.cardNumberTextField resignFirstResponder];
+    [self.cvcTextField resignFirstResponder];
+    [self.expYearTextField resignFirstResponder];
+    [self.expMonthTextField resignFirstResponder];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                      message:[error localizedDescription]
-                                                     delegate:nil
-                                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                            otherButtonTitles:nil];
-    [message show];
+    if (textField == self.cardNumberTextField) {
+        [self.expMonthTextField becomeFirstResponder];
+    } else if (textField == self.expMonthTextField) {
+        [self.expYearTextField becomeFirstResponder];
+    } else if (textField == self.expYearTextField) {
+        [self.cvcTextField becomeFirstResponder];
+    } else {
+        [self.cvcTextField resignFirstResponder];
+    }
+    
+    return YES;
+    //return NO; // We do not want UITextField to insert line-breaks.
+    
 }
 
-- (void)hasToken:(STPToken *)token
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSLog(@"Received token %@", token.tokenId);
+    NSLog(@"begain editing");
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://example.com"]];
-    request.HTTPMethod = @"POST";
-    NSString *body     = [NSString stringWithFormat:@"stripeToken=%@", token.tokenId];
-    request.HTTPBody   = [body dataUsingEncoding:NSUTF8StringEncoding];
+    if (textField == self.cardNumberTextField) {
+        NSLog(@"textfield is passwordTextField");
+        [self animateTextField: self.cardNumberTextField up: YES];
+    } else if (textField == self.expMonthTextField) {
+        NSLog(@"textfield is passwordTextField");
+        [self animateTextField: self.expMonthTextField up: YES];
+    } else if (textField == self.expYearTextField) {
+        NSLog(@"textfield is passwordTextField");
+        [self animateTextField: self.expYearTextField up: YES];
+    } else {
+        NSLog(@"textfield is passwordConfTextField");
+        [self animateTextField: self.cvcTextField up: YES];
+    }
     
-    // show spinner
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.cardNumberTextField) {
+        [self animateTextField: self.cardNumberTextField up: NO];
+    } else if (textField == self.expMonthTextField) {
+        [self animateTextField: self.expMonthTextField up: NO];
+    } else if (textField == self.expYearTextField) {
+        [self animateTextField: self.expYearTextField up: NO];
+    } else {
+        [self animateTextField: self.cvcTextField up: NO];
+    }
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               // hide spinner
-                               //                               if (error) {
-                               //                                   [self hasError:error];
-                               //                               } else {
-                               [self.navigationController popViewControllerAnimated:YES];
-                               //                               }
-                           }];
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    int movementDistance;
+    float movementDuration;
+    
+    
+    if (screenSize.height > 480.0f) {
+        /*Do iPhone 5 stuff here.*/
+        
+        if (textField == self.cardNumberTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if (textField == self.expMonthTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if (textField == self.expYearTextField) {
+            movementDistance = 80;
+            movementDuration = 0.3f;
+        } else { //(textField == self.cvc) {
+            NSLog(@"focusing cvc conf");
+            
+            movementDistance = 180;
+            movementDuration = 0.3f;
+        }
+    } else {
+        /*Do iPhone Classic stuff here.*/
+        
+        if (textField == self.cardNumberTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if(textField == self.expMonthTextField || textField == self.expYearTextField) {
+            movementDistance = 60;
+            movementDuration = 0.3f;
+        } else { //(textField == cvc) {
+            movementDistance = 215;
+            movementDuration = 0.3f;
+        }
+    }
+    
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.scrollview.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 
 
 
+ 
+    /*
+
+
+    */
+    
+
+- (IBAction)touchSubmitButton:(id)sender {
+    
+    NSLog(@"clicked");
+    
+    //1
+    self.stripeCard = [[STPCard alloc] init];
+    self.stripeCard.name = self.user.name;
+    self.stripeCard.number = self.cardNumberTextField.text;
+    self.stripeCard.cvc = self.cvcTextField.text;
+    
+    
+    self.stripeCard.expMonth = [self.expMonthTextField.text integerValue];
+    self.stripeCard.expYear = [self.expYearTextField.text integerValue];
+    
+    //2
+    //validations
+    if (self.cardNumberTextField.text.length < 16) {
+        [self showAlertWithMessage:@"Your card number is incorrect."];
+        
+        self.cardNumberTextField.text = @"";
+        [self.cardNumberTextField becomeFirstResponder];
+        
+    } else if ([self.expMonthTextField.text intValue] < 1 || [self.expMonthTextField.text intValue] > 12) {
+        [self showAlertWithMessage:@"Your expiration month is not valid"];
+        
+    } else if ([self.expYearTextField.text intValue] < 2014) {
+        [self showAlertWithMessage:@"Your card has expired."];
+        
+    } else {
+        
+        // if passes all validations
+        [self performStripeOperation];
+        
+    }
+    
+}
 @end

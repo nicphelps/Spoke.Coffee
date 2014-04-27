@@ -18,5 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *deliveryTextView;
 - (IBAction)touchPaymentButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @end

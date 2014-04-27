@@ -159,38 +159,14 @@
             
             
             
-            UIStoryboard *storyboard;
-            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-            {
-                storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
-            } else {
-                storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-            }
-            
-            SuccessViewController *successViewController = [storyboard instantiateViewControllerWithIdentifier:@"successViewController"];
-            //[self presentViewController:successViewController animated:NO completion:nil];
-            [self.navigationController pushViewController:successViewController animated:YES];
-            
-            
+
             
             
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Response Error: %@", error);
-            
-            UIStoryboard *storyboard;
-            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-            {
-                storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
-            } else {
-                storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-            }
-            
-            SuccessViewController *successViewController = [storyboard instantiateViewControllerWithIdentifier:@"successViewController"];
-            //[self presentViewController:successViewController animated:NO completion:nil];
-            [self.navigationController pushViewController:successViewController animated:YES];
 
-            
+            NSLog(@"Response Error: %@", error);
+
             
         }];
         
@@ -219,6 +195,26 @@
                          else
                              [self postRequest];
                      }];
+    
+    
+
+    
+    UIStoryboard *storyboard;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+    }
+    
+    SuccessViewController *successViewController = [storyboard instantiateViewControllerWithIdentifier:@"successViewController"];
+    //[self presentViewController:successViewController animated:NO completion:nil];
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        [self.navigationController pushViewController:successViewController animated:YES];
+    });
     
     
 }
@@ -251,7 +247,7 @@
 
 
     
-    
+/*
 #pragma mark - Connection delegate methods
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -271,7 +267,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
     [self.receivedData appendData:d];
 }
-
+*/
 
 
 /*
@@ -545,7 +541,10 @@
             
             NSLog(@"validated customer info!!!");
             [self postRequest];
-            //[self performStripeOperation];
+            [self performStripeOperation];
+
+            
+            
         } else {
             NSLog(@"info not validated");
         }

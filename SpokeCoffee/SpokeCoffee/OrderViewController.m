@@ -104,7 +104,7 @@
     }
     
     PaymentViewController *paymentViewController = [storyboard instantiateViewControllerWithIdentifier:@"paymentViewController"];
-    [self presentViewController:paymentViewController animated:NO completion:nil];
+    [self.navigationController pushViewController:paymentViewController animated:YES];
     
    // }
 }
@@ -119,6 +119,7 @@
     [self.nameTextField resignFirstResponder];
     [self.phoneTextField resignFirstResponder];
     [self.emailTextField resignFirstResponder];
+    [self.addressTextView resignFirstResponder];
     [self.deliveryTextView resignFirstResponder];
     
 }
@@ -130,6 +131,8 @@
     } else if (textField == self.phoneTextField) {
         [self.emailTextField becomeFirstResponder];
     } else if (textField == self.emailTextField) {
+        [self.addressTextView becomeFirstResponder];
+    } else if (textField == self.addressTextView) {
         [self.deliveryTextView becomeFirstResponder];
     } else {
         [self.deliveryTextView resignFirstResponder];
@@ -138,6 +141,110 @@
     return YES;
     //return NO; // We do not want UITextField to insert line-breaks.
     
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"begain editing");
+    
+    if(textField == self.nameTextField ) {
+        NSLog(@"textfield is name");
+        [self animateTextField: self.nameTextField up: YES];
+    } else if (textField == self.phoneTextField) {
+        NSLog(@"textfield is phone");
+        [self animateTextField: self.phoneTextField up: YES];
+    }
+    else if (textField == self.emailTextField) {
+        NSLog(@"textfield is emailTextField");
+        [self animateTextField: self.emailTextField up: YES];
+    } else if (textField == self.addressTextView) {
+        NSLog(@"textfield is passwordTextField");
+        [self animateTextField: self.addressTextView up: YES];
+    } else if (textField == self.deliveryTextView) {
+        NSLog(@"textfield is passwordTextField");
+        [self animateTextField: self.deliveryTextView up: YES];
+    } else {
+        NSLog(@"textfield is passwordConfTextField");
+        [self animateTextField: self.deliveryTextView up: YES];
+    }
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == self.nameTextField) {
+        [self animateTextField: self.nameTextField up: NO];
+    } else if (textField == self.phoneTextField) {
+        [self animateTextField: self.phoneTextField up: NO];
+    } else if (textField == self.emailTextField) {
+        [self animateTextField: self.emailTextField up: NO];
+    } else if (textField == self.addressTextView) {
+        [self animateTextField: self.addressTextView up: NO];
+    } else {
+        [self animateTextField: self.deliveryTextView up: NO];
+    }
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    int movementDistance;
+    float movementDuration;
+    
+    
+    if (screenSize.height > 480.0f) {
+        /*Do iPhone 5 stuff here.*/
+        
+        if (textField == self.nameTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if (textField == self.phoneTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if (textField == self.emailTextField) {
+            movementDistance = 80;
+            movementDuration = 0.3f;
+        } else if(textField == self.addressTextView) {
+            movementDistance = 130;
+            movementDuration = 0.3f;
+        } else { //(textField == self.passwordConfTextField) {
+            NSLog(@"focusing password conf");
+            
+            movementDistance = 180;
+            movementDuration = 0.3f;
+        }
+    } else {
+        /*Do iPhone Classic stuff here.*/
+        
+        if (textField == self.nameTextField) {
+            movementDistance = 0;
+            movementDuration = 0.3f;
+        } else if (textField == self.phoneTextField) {
+            movementDistance = 60;
+            movementDuration = 0.3f;
+        } else if (textField == self.emailTextField) {
+            movementDistance = 120;
+            movementDuration = 0.3f;
+        } else if(textField == self.addressTextView) {
+            movementDistance = 180;
+            movementDuration = 0.3f;
+        } else { //(textField == self.passwordConfTextField) {
+            movementDistance = 215;
+            movementDuration = 0.3f;
+        }
+    }
+    
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.scrollview.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 
 

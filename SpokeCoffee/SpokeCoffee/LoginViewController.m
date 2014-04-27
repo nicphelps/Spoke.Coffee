@@ -13,10 +13,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 
-
-
-
-
 @interface LoginViewController ()
 
 @property UserClass *user;
@@ -61,6 +57,9 @@
     // user class
     self.user = [UserClass getInstance];
     
+    //nav
+    [self.navigationController setNavigationBarHidden:YES];
+
     
 }
 
@@ -81,7 +80,7 @@
         [self.nameTextField becomeFirstResponder];
     } else if (self.phoneTextField.text.length < 1) {
         
-        [self showAlertWithMessage:@"Please, enter your last name."];
+        [self showAlertWithMessage:@"Please, enter your phone number."];
         
         self.phoneTextField.text = @"";
         [self.phoneTextField becomeFirstResponder];
@@ -93,13 +92,13 @@
         [self.emailTextField becomeFirstResponder];
         
     } else if (![self.passwordTextField.text isEqualToString:self.passwordConfTextField.text]) {
-        [self showAlertWithMessage:@"Make sure your password is at least 8 characters."];
+        [self showAlertWithMessage:@"Your password does not match the confirmation."];
         
         self.passwordTextField.text = @"";
         [self.passwordTextField becomeFirstResponder];
         
-    } else if (self.passwordConfTextField.text.length < 8) {
-        [self showAlertWithMessage:@"Your password does not match the confirmation."];
+    } else if (self.passwordTextField.text < 8) {
+        [self showAlertWithMessage:@"Make sure your password is at least 8 characters."];
         
     } else {
         
@@ -138,8 +137,10 @@
     }
     
     MapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
-    [self presentViewController:mapViewController animated:NO completion:nil];
+    //[self presentViewController:mapViewController animated:NO completion:nil];
     
+    [self.navigationController pushViewController:mapViewController animated:YES];
+
     
 }
 

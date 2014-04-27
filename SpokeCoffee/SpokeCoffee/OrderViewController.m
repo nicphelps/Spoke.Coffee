@@ -77,7 +77,7 @@
 - (IBAction)touchPaymentButton:(id)sender {
     
     
-    
+    /*
     //validations
     if (self.nameTextField.text.length < 1) {
         
@@ -88,7 +88,7 @@
     } else if (self.nameTextField.text.length < 1) {
         
     } else {
-        
+      */
         self.user.name = self.nameTextField.text;
         self.user.phone = self.phoneTextField.text;
         self.user.email = self.emailTextField.text;
@@ -106,7 +106,7 @@
     PaymentViewController *paymentViewController = [storyboard instantiateViewControllerWithIdentifier:@"paymentViewController"];
     [self presentViewController:paymentViewController animated:NO completion:nil];
     
-    }
+   // }
 }
 
 

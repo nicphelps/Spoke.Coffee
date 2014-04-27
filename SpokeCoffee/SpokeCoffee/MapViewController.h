@@ -18,7 +18,9 @@
 
 - (IBAction)touchEditButton:(id)sender;
 
+
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 - (IBAction)touchCoffeeButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @end

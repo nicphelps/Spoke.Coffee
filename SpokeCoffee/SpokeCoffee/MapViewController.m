@@ -63,10 +63,18 @@
     
     [self.view addGestureRecognizer:tap];
     
+    self.addressTextField.delegate = self;
+    
     
 
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    
+    
+    //[self.navigationController setNavigationBarHidden:YES];
+
+}
 
 
 
@@ -180,6 +188,8 @@
 
 
 
+
+
 - (IBAction)touchCoffeeButton:(id)sender {
     
     self.user.address = self.addressTextField.text;
@@ -195,10 +205,91 @@
         }
         
         OrderViewController *orderViewController = [storyboard instantiateViewControllerWithIdentifier:@"orderViewController"];
-        [self presentViewController:orderViewController animated:NO completion:nil];
-        
-        
+        //[self presentViewController:orderViewController animated:NO completion:nil];
+        [self.navigationController pushViewController:orderViewController animated:YES];
+
+    
         
     
 }
+
+
+
+
+
+
+
+
+#pragma mark - textfields / keyboard
+
+-(void)dismissKeyboard {
+    [self.addressTextField resignFirstResponder];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+
+    [self.addressTextField resignFirstResponder];
+    
+    
+    return YES;
+    //return NO; // We do not want UITextField to insert line-breaks.
+    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"began editing");
+    
+
+    [self animateTextField: self.addressTextField up: YES];
+    
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+
+    [self animateTextField: self.addressTextField up: NO];
+    
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    int movementDistance;
+    float movementDuration;
+    
+    
+    if (screenSize.height > 480.0f) {
+        /*Do iPhone 5 stuff here.*/
+        
+            movementDistance = 215;
+            movementDuration = 0.3f;
+        
+    } else {
+        /*Do iPhone Classic stuff here.*/
+        
+
+            movementDistance = 215;
+            movementDuration = 0.3f;
+        
+    }
+    
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.scrollview.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
+
+
+
 @end

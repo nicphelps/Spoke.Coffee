@@ -19,6 +19,7 @@
 		BB19C59B190C413E0010D0DC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C59A190C413E0010D0DC /* CoreLocation.framework */; };
 		BB19C638190C56AC0010D0DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB19C637190C56AC0010D0DC /* QuartzCore.framework */; };
 		BB19C63E190C56F20010D0DC /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C63D190C56F20010D0DC /* PaymentViewController.m */; };
+		BB19C643190D83AB0010D0DC /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB19C642190D83AB0010D0DC /* SuccessViewController.m */; };
 		BB8D5B95190B832800F39D98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8D5B94190B832800F39D98 /* Foundation.framework */; };
 		BB8D5B97190B832800F39D98 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8D5B96190B832800F39D98 /* CoreGraphics.framework */; };
 		BB8D5B99190B832800F39D98 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB8D5B98190B832800F39D98 /* UIKit.framework */; };
@@ -72,6 +73,8 @@
 		BB19C63C190C56F20010D0DC /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		BB19C63D190C56F20010D0DC /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		BB19C63F190C5AB00010D0DC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		BB19C641190D83AB0010D0DC /* SuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
+		BB19C642190D83AB0010D0DC /* SuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
 		BB8D5B91190B832800F39D98 /* SpokeCoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpokeCoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D5B94190B832800F39D98 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB8D5B96190B832800F39D98 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,14 +106,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB19C638190C56AC0010D0DC /* QuartzCore.framework in Frameworks */,
-				BB19C59B190C413E0010D0DC /* CoreLocation.framework in Frameworks */,
-				BB19C599190C248A0010D0DC /* libz.dylib in Frameworks */,
+				BB8D5B97190B832800F39D98 /* CoreGraphics.framework in Frameworks */,
 				BB19C597190C247B0010D0DC /* MobileCoreServices.framework in Frameworks */,
 				BB19C595190C24710010D0DC /* SystemConfiguration.framework in Frameworks */,
 				BB19C593190C245D0010D0DC /* CFNetwork.framework in Frameworks */,
+				BB19C638190C56AC0010D0DC /* QuartzCore.framework in Frameworks */,
+				BB19C59B190C413E0010D0DC /* CoreLocation.framework in Frameworks */,
+				BB19C599190C248A0010D0DC /* libz.dylib in Frameworks */,
 				BB19C563190C0ADD0010D0DC /* MapKit.framework in Frameworks */,
-				BB8D5B97190B832800F39D98 /* CoreGraphics.framework in Frameworks */,
 				BB8D5B99190B832800F39D98 /* UIKit.framework in Frameworks */,
 				BB8D5B95190B832800F39D98 /* Foundation.framework in Frameworks */,
 				CDC8E446073340E6B5DED6CB /* libPods.a in Frameworks */,
@@ -200,6 +203,8 @@
 				BB19C568190C19360010D0DC /* OrderViewController.m */,
 				BB19C63C190C56F20010D0DC /* PaymentViewController.h */,
 				BB19C63D190C56F20010D0DC /* PaymentViewController.m */,
+				BB19C641190D83AB0010D0DC /* SuccessViewController.h */,
+				BB19C642190D83AB0010D0DC /* SuccessViewController.m */,
 			);
 			path = SpokeCoffee;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB19C55E190B9D620010D0DC /* LoginViewController.m in Sources */,
+				BB19C643190D83AB0010D0DC /* SuccessViewController.m in Sources */,
 				BB8D5BAE190B832800F39D98 /* ViewController.m in Sources */,
 				BB19C561190BA6C30010D0DC /* MapViewController.m in Sources */,
 				BB8D5BA5190B832800F39D98 /* AppDelegate.m in Sources */,

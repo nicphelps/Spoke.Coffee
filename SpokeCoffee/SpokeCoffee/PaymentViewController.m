@@ -14,10 +14,16 @@
 #import "AFURLSessionManager.h"
 #import <AFNetworking/AFURLConnectionOperation.h>
 
+#import "SuccessViewController.h"
+
+
+
 #define STRIPE_PUBLISHABLE_KEY @"pk_test_QPlAOHwkAsMjQJE7RF7snZjx" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
 #define STRIPE_SECRET_KEY @"sk_test_zgeYzaqcE6YXyI6WvpLYJBun" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-#define STRIPE_TEST_POST_URL @"http://spoke.coffee/charge"
-#define API_URL @"http://spoke.coffee/charge"
+//#define API_URL @"http://spoke.coffee/charge"
+#define API_URL @"http://spoke-stage.herokuapp.com/charge"
+//#define API_URL @"http://10.1.10.88:9393/charge"
+
 
 
 @interface PaymentViewController () {
@@ -28,6 +34,7 @@
 @property (nonatomic, strong) NSMutableData *receivedData;
 
 @property UserClass *user;
+
 
 
 @end
@@ -42,6 +49,8 @@
     
     // init
     self.user = [UserClass getInstance];
+    self.stripeCard = [[STPCard alloc] init];
+
     
     /*
     self.stripeView = [[STPView alloc] initWithFrame:CGRectMake(15,20,290,55)
@@ -78,6 +87,121 @@
 
 # pragma mark - Post request
 
+
+- (void)postRequest {
+    
+    //if (self.user.card_number != nil) {
+        
+        
+        NSString *coordinates = [self.user.latitude stringValue];
+        coordinates = [coordinates stringByAppendingString:@", "];
+        coordinates = [coordinates stringByAppendingString:[self.user.longitude stringValue]];
+        
+        
+    /*
+         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+         @"ios",@"true",
+         self.user.name, @"order[customer_name]",
+         self.user.phone, @"order[customer_phone]",
+         self.user.address, @"order[delivery_address]",
+         self.user.delivery_instructions, @"order[delivery_instructions]",
+         coordinates, @"order[delivery_coordinates]",
+         STRIPE_PUBLISHABLE_KEY, @"stripeToken",
+         self.user.email, @"stripeEmail",
+         self.user.email, @"order[customer_email]",
+         nil];
+    */
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"true",@"ios",
+                                @"Nicole Phelps", @"order[customer_name]",
+                                @"5035040156", @"order[customer_phone]",
+                                @"123 23rd ave, portland", @"order[delivery_address]",
+                                @"asap plz", @"order[delivery_instructions]",
+                                @"42.00 , 120.00", @"order[delivery_coordinates]",
+                                STRIPE_PUBLISHABLE_KEY, @"stripeToken",
+                                @"nicole.marie.phelps@gmail.com", @"stripeEmail",
+                                @"nicole.marie.phelps@gmail.com", @"customer_email",
+                                nil];
+    
+
+        
+    
+    NSString *jsonString;
+    NSError *error;
+    NSData *jsonParams = [NSJSONSerialization dataWithJSONObject:params
+                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error:&error];
+    
+    
+    if (! jsonParams) {
+        NSLog(@"Got an error dict to json: %@", error);
+    } else {
+       // jsonString = [[NSString alloc] initWithData:testString encoding:NSUTF8StringEncoding];
+    }
+    
+    NSLog(@"\n\n\njson params: %@\n\n\n", jsonString);
+
+    
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        [manager POST:API_URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            
+            NSLog(@"Success");
+            
+            
+            // insert comment
+            
+            NSMutableArray *responseArray = [[NSMutableArray alloc] init];
+            
+            
+            NSLog(@"response: %@", responseArray);
+            
+            
+            
+            UIStoryboard *storyboard;
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+            {
+                storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
+            } else {
+                storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+            }
+            
+            SuccessViewController *successViewController = [storyboard instantiateViewControllerWithIdentifier:@"successViewController"];
+            //[self presentViewController:successViewController animated:NO completion:nil];
+            [self.navigationController pushViewController:successViewController animated:YES];
+            
+            
+            
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Response Error: %@", error);
+            
+            UIStoryboard *storyboard;
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+            {
+                storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
+            } else {
+                storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+            }
+            
+            SuccessViewController *successViewController = [storyboard instantiateViewControllerWithIdentifier:@"successViewController"];
+            //[self presentViewController:successViewController animated:NO completion:nil];
+            [self.navigationController pushViewController:successViewController animated:YES];
+
+            
+            
+        }];
+        
+        
+ 
+}
+
+
+# pragma mark - Stripe
+
+
 - (void)performStripeOperation {
     
     /*
@@ -87,93 +211,44 @@
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     */
     
-    
-
-    
-    
-    /*
-     spoke.coffee/charge post
-     order[customer_name]
-     order[customer_phone]
-     order[delivery_instructions]
-     order[delivery_address]
-     order[delivery_coordinates]
-     stripeToken
-     stripeEmail
-     
-     should return 200 status and webpage in body
-     */
+    [Stripe createTokenWithCard:self.stripeCard
+                 publishableKey:STRIPE_PUBLISHABLE_KEY
+                     completion:^(STPToken* token, NSError* error) {
+                         if(error)
+                             [self handleStripeError:error];
+                         else
+                             [self postRequest];
+                     }];
     
     
-
-    /*
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"ios",@"true",
-                            self.user.name, @"order[customer_name]",
-                            self.user.phone, @"order[customer_phone]",
-                            self.user.address, @"order[delivery_address]",
-                            self.user.delivery_instructions, @"order[delivery_instructions]",
-                            coordinates, @"order[delivery_coordinates]",
-                            STRIPE_PUBLISHABLE_KEY, @"stripeToken",
-                            self.user.email, @"stripeEmail",
-                            nil];
-    
-    //http://spoke.coffee/charge?ios=true&username=order[customer_name]&self.user.phone=order[customer_phone]&self.user.address=order[delivery_address]&self.user.delivery_instructions=order[delivery_instructions]&coordinates=order[delivery_coordinates]&STRIPE_PUBLISHABLE_KEY=stripeToken&self.user.email=stripeEmail
-    */
-    
-    
-    NSString *coordinates = [self.user.latitude stringValue];
-    coordinates = [coordinates stringByAppendingString:@", "];
-    coordinates = [coordinates stringByAppendingString:[self.user.longitude stringValue]];
-    
-    
-
-    NSLog(@"name: %@\n, phone: %@\n, address: %@\n, instructions: %@\n, coordinates: %@\n, email: %@\n", self.user.name, self.user.phone, self.user.address, self.user.delivery_instructions, coordinates, self.user.email);
-    
-    
-
-    
-    
-    NSString *bodyData = @"?ios=true";
-    bodyData = [bodyData stringByAppendingString:@"&order[customer_name]="];
-    bodyData = [bodyData stringByAppendingString:self.user.name];
-    bodyData = [bodyData stringByAppendingString:@"&order[customer_phone]="];
-    bodyData = [bodyData stringByAppendingString:self.user.phone];
-    bodyData = [bodyData stringByAppendingString:@"&order[customer_address]="];
-    bodyData = [bodyData stringByAppendingString:self.user.address];
-    bodyData = [bodyData stringByAppendingString:@"&order[delivery_instructions]="];
-    bodyData = [bodyData stringByAppendingString:self.user.delivery_instructions];
-    bodyData = [bodyData stringByAppendingString:@"&order[delivery_coordinates]="];
-    bodyData = [bodyData stringByAppendingString:coordinates];
-    bodyData = [bodyData stringByAppendingString:@"&stripeToken="];
-    bodyData = [bodyData stringByAppendingString:STRIPE_PUBLISHABLE_KEY];
-    bodyData = [bodyData stringByAppendingString:@"&stripeEmail="];
-    bodyData = [bodyData stringByAppendingString:self.user.email];
-
-    
-    
-    
-    
-    NSString *urlString = [API_URL stringByAppendingString:bodyData];
-    
-    
-    NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    
-    // Set the request's content type to application/x-www-form-urlencoded
-    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    
-    // Set the request's content type, method type, and body
-    [postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [postRequest setHTTPMethod:@"POST"];
-    [postRequest setHTTPBody:[bodyData dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:postRequest delegate:self];
-    [connection start];//It will start delegates
-    
-     
 }
+
+
+- (void)handleStripeError:(NSError *) error {
+    
+    //1
+    if ([error.domain isEqualToString:@"StripeDomain"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:[error localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    //2
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Please try again"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    
+}
+
 
     
     
@@ -199,7 +274,7 @@
 
 
 
-
+/*
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"error %@", error);
 }
@@ -263,14 +338,26 @@
         }
     }
 }
-
+*/
 
 
 
 
 - (BOOL)validateCustomerInfo {
     
-
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please try again"
+                                                     message:@"Please enter all required information"
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    
+    //1. Validate name & email
+    if (self.user.name == nil ||
+        self.user.email == nil) {
+        
+        [alert show];
+        return NO;
+    }
     
     //2. Validate card number, CVC, expMonth, expYear
     NSError* error = nil;
@@ -278,15 +365,8 @@
     
     //3
     if (error) {
-        
-        
-        [self showAlertWithMessage:[error localizedDescription]];
-
-        /*
         alert.message = [error localizedDescription];
         [alert show];
-         
-         */
         return NO;
     }
     
@@ -438,11 +518,12 @@
     self.stripeCard.number = self.cardNumberTextField.text;
     self.stripeCard.cvc = self.cvcTextField.text;
     
-    
     self.stripeCard.expMonth = [self.expMonthTextField.text integerValue];
     self.stripeCard.expYear = [self.expYearTextField.text integerValue];
     
     //2
+    
+    /*
     //validations
     if (self.cardNumberTextField.text.length < 16) {
         [self showAlertWithMessage:@"Your card number is incorrect."];
@@ -457,11 +538,18 @@
         [self showAlertWithMessage:@"Your card has expired."];
         
     } else {
-        
+        */
         // if passes all validations
-        [self performStripeOperation];
-        
-    }
+        //2
+        if ([self validateCustomerInfo]) {
+            
+            NSLog(@"validated customer info!!!");
+            [self postRequest];
+            //[self performStripeOperation];
+        } else {
+            NSLog(@"info not validated");
+        }
+    //}
     
 }
 @end

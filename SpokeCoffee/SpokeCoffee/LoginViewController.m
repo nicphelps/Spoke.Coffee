@@ -70,7 +70,7 @@
     
     NSLog(@"Touched Login Button");
     
-    /*
+    
     //validations
     if (self.nameTextField.text.length < 1) {
         
@@ -118,28 +118,15 @@
         }
         
         MapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
-        [self presentViewController:mapViewController animated:NO completion:nil];
+        [self.navigationController pushViewController:mapViewController animated:YES];
         
     }
-     */
+     
     
     self.user.name = self.nameTextField.text;
     self.user.phone = self.phoneTextField.text;
     self.user.email = self.emailTextField.text;
-    
-    
-    UIStoryboard *storyboard;
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
-    } else {
-        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-    }
-    
-    MapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
-    //[self presentViewController:mapViewController animated:NO completion:nil];
-    
-    [self.navigationController pushViewController:mapViewController animated:YES];
+
 
     
 }

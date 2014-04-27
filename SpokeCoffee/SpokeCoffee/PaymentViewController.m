@@ -67,6 +67,10 @@
     
     [self.view addGestureRecognizer:tap];
     
+    self.cardNumberTextField.delegate = self;
+    self.expMonthTextField.delegate = self;
+    self.expYearTextField.delegate = self;
+    self.cvcTextField.delegate = self;
     
 }
 
@@ -476,11 +480,14 @@
         if (textField == self.cardNumberTextField) {
             movementDistance = 0;
             movementDuration = 0.3f;
-        } else if(textField == self.expMonthTextField || textField == self.expYearTextField) {
+        } else if(textField == self.expMonthTextField) {
             movementDistance = 60;
             movementDuration = 0.3f;
+        } else if(textField == self.expYearTextField) {
+            movementDistance = 80;
+            movementDuration = 0.3f;
         } else { //(textField == cvc) {
-            movementDistance = 215;
+            movementDistance = 200;
             movementDuration = 0.3f;
         }
     }

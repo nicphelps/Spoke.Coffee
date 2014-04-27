@@ -81,7 +81,7 @@
 - (IBAction)touchPaymentButton:(id)sender {
     
     
-    /*
+    
     //validations
     if (self.nameTextField.text.length < 1) {
         
@@ -89,28 +89,44 @@
         
         self.nameTextField.text = @"";
         [self.nameTextField becomeFirstResponder];
-    } else if (self.nameTextField.text.length < 1) {
+    } else if (self.phoneTextField.text.length < 10) {
+        [self showAlertWithMessage:@"That phone number is incorrect."];
         
+        self.phoneTextField.text = @"";
+        [self.phoneTextField becomeFirstResponder];
+    } else if (self.emailTextField.text.length < 5 && [self.emailTextField.text rangeOfString:@"@"].location != NSNotFound) {
+        [self showAlertWithMessage:@"Please, enter a valid email."];
+        
+        self.emailTextField.text = @"";
+        [self.emailTextField becomeFirstResponder];
+    } else if (self.addressTextView.text.length < 1) {
+        [self showAlertWithMessage:@"Please, enter your address"];
+        
+        self.addressTextView.text = @"";
+        [self.addressTextView becomeFirstResponder];
     } else {
-      */
+      
         self.user.name = self.nameTextField.text;
         self.user.phone = self.phoneTextField.text;
-    self.user.email = self.emailTextField.text;
-    self.user.address = self.addressTextView.text;
+        self.user.email = self.emailTextField.text;
+        self.user.address = self.addressTextView.text;
         self.user.delivery_instructions = self.deliveryTextField.text;
+    
+        UIStoryboard *storyboard;
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+        {
+            storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
+        } else {
+            storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+        }
+        
+        PaymentViewController *paymentViewController = [storyboard instantiateViewControllerWithIdentifier:@"paymentViewController"];
+        [self.navigationController pushViewController:paymentViewController animated:YES];
         
     
-    UIStoryboard *storyboard;
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle: nil];
-    } else {
-        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
     }
     
-    PaymentViewController *paymentViewController = [storyboard instantiateViewControllerWithIdentifier:@"paymentViewController"];
-    [self.navigationController pushViewController:paymentViewController animated:YES];
-    
+
    // }
 }
 
@@ -120,7 +136,7 @@
 #pragma mark - Textfield animation and Keyboard Dismissal
 
 
--(void)dismissKeyboard {
+-(void) dismissKeyboard {
     [self.nameTextField resignFirstResponder];
     [self.phoneTextField resignFirstResponder];
     [self.emailTextField resignFirstResponder];

@@ -39,6 +39,9 @@
     if (self.user.email != nil) {
         self.emailTextField.text = self.user.email;
     }
+    if (self.user.address != nil) {
+        self.addressTextView.text = self.user.address;
+    }
     
     // navigation
     [self.navigationController setNavigationBarHidden:NO];
@@ -56,7 +59,8 @@
     self.nameTextField.delegate = self;
     self.phoneTextField.delegate = self;
     self.emailTextField.delegate = self;
-    self.deliveryTextView.delegate = self;
+    self.deliveryTextField.delegate = self;
+    self.addressTextView.delegate = self;
     
     
 }
@@ -91,8 +95,9 @@
       */
         self.user.name = self.nameTextField.text;
         self.user.phone = self.phoneTextField.text;
-        self.user.email = self.emailTextField.text;
-        self.user.delivery_instructions = self.deliveryTextView.text;
+    self.user.email = self.emailTextField.text;
+    self.user.address = self.addressTextView.text;
+        self.user.delivery_instructions = self.deliveryTextField.text;
         
     
     UIStoryboard *storyboard;
@@ -120,7 +125,7 @@
     [self.phoneTextField resignFirstResponder];
     [self.emailTextField resignFirstResponder];
     [self.addressTextView resignFirstResponder];
-    [self.deliveryTextView resignFirstResponder];
+    [self.deliveryTextField resignFirstResponder];
     
 }
 
@@ -182,7 +187,7 @@
     } else if (textField == self.addressTextView) {
         [self animateTextField: self.addressTextView up: NO];
     } else {
-        [self animateTextField: self.deliveryTextView up: NO];
+        [self animateTextField: self.deliveryTextField up: NO];
     }
 }
 
@@ -205,7 +210,7 @@
             movementDistance = 0;
             movementDuration = 0.3f;
         } else if (textField == self.emailTextField) {
-            movementDistance = 80;
+            movementDistance = 0;
             movementDuration = 0.3f;
         } else if(textField == self.addressTextView) {
             movementDistance = 130;
@@ -213,7 +218,7 @@
         } else { //(textField == self.passwordConfTextField) {
             NSLog(@"focusing password conf");
             
-            movementDistance = 180;
+            movementDistance = 215;
             movementDuration = 0.3f;
         }
     } else {
@@ -228,7 +233,7 @@
         } else if (textField == self.emailTextField) {
             movementDistance = 120;
             movementDuration = 0.3f;
-        } else if(textField == self.addressTextView) {
+        } else if(textField == self.deliveryTextField) {
             movementDistance = 180;
             movementDuration = 0.3f;
         } else { //(textField == self.passwordConfTextField) {

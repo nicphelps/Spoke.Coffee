@@ -18,10 +18,12 @@
 
 
 
-#define STRIPE_PUBLISHABLE_KEY @"pk_test_QPlAOHwkAsMjQJE7RF7snZjx" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#define STRIPE_TEST_KEY @"pk_test_QPlAOHwkAsMjQJE7RF7snZjx" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#define STRIPE_PUBLISHABLE_KEY @"pk_live_vhP9dqeDNYR9HSNyxqWSMpxO" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+
 #define STRIPE_SECRET_KEY @"sk_test_zgeYzaqcE6YXyI6WvpLYJBun" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-//#define API_URL @"http://spoke.coffee/charge"
-#define API_URL @"http://spoke-stage.herokuapp.com/charge"
+#define API_URL @"http://spoke.coffee/charge"
+//#define API_URL @"http://spoke-stage.herokuapp.com/charge"
 //#define API_URL @"http://10.1.10.88:9393/charge"
 
 
@@ -102,7 +104,7 @@
         coordinates = [coordinates stringByAppendingString:[self.user.longitude stringValue]];
         
         
-    /*
+    
          NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
          @"ios",@"true",
          self.user.name, @"order[customer_name]",
@@ -114,7 +116,7 @@
          self.user.email, @"stripeEmail",
          self.user.email, @"order[customer_email]",
          nil];
-    */
+    /*
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                 @"true",@"ios",
                                 @"Nicole Phelps", @"order[customer_name]",
@@ -127,7 +129,7 @@
                                 @"nicole.marie.phelps@gmail.com", @"customer_email",
                                 nil];
     
-
+*/
         
     
     NSString *jsonString;
@@ -145,6 +147,9 @@
     
     NSLog(@"\n\n\njson params: %@\n\n\n", jsonString);
 
+    
+    
+    NSLog(@"params blah: %@", params);
     
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
@@ -199,8 +204,6 @@
                          else
                              [self postRequest];
                      }];
-    
-    
 
     
     UIStoryboard *storyboard;
@@ -251,95 +254,6 @@
 
 
     
-/*
-#pragma mark - Connection delegate methods
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    
-    ///[activityView stopAnimating];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    
-    [self.receivedData setLength:0];
-    
-    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    self->statusCode = [httpResponse statusCode];
-    
-    NSLog(@"status code: %d", statusCode);
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
-    [self.receivedData appendData:d];
-}
-*/
-
-
-/*
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"error %@", error);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSString *responseText = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"response text %@", responseText);
-    
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    NSString *thisError = (NSString *)[[response valueForKey:@"errors"] description];
-    NSLog(@"this error: %@", thisError);
-    
-    if (thisError.length > 0 && thisError != nil) {
-        
-        NSString *errorWithoutSymbols = [thisError stringByReplacingOccurrencesOfString:@"(" withString:@""];
-        NSString *string2 = [errorWithoutSymbols stringByReplacingOccurrencesOfString:@")" withString:@""];
-        errorWithoutSymbols = [string2 stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        thisError = [errorWithoutSymbols stringByReplacingOccurrencesOfString:@"    " withString:@""];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure!"
-                                                        message:thisError
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Try Again."
-                                              otherButtonTitles:nil];
-        [alert show];
-        [self showAlertWithMessage:thisError];
-        
-        
-    } else if ([responseText rangeOfString:@"first_name"].location != NSNotFound) {
-        
-        NSLog(@"contains first name");
-        
-        
-        NSArray *responseSplit = [responseText componentsSeparatedByString:@"\":\""];
-        
-        NSString *tokenString = [responseSplit objectAtIndex:[responseSplit count]-1];
-        NSString *token = [tokenString substringToIndex:[tokenString length]-3];
-        NSLog(@"token: %@", token);
-        
-        
-        NSString *nameString = [responseSplit objectAtIndex:1];
-        NSRange range = [nameString rangeOfString:@"\""];
-        
-        NSString *name = [nameString substringToIndex:range.location];
-        NSLog(@"name: %@", name);
-        
-        
-        
-        
-        
-        
-        if(self->statusCode == 201 || statusCode == 200) {
-            
-            NSLog(@"200");
-        } else {
-            NSLog(@"not 200");
-        }
-    }
-}
-*/
-
 
 
 

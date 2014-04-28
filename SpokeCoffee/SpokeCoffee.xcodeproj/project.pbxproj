@@ -537,7 +537,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpokeCoffee/SpokeCoffee-Prefix.pch";
 				INFOPLIST_FILE = "SpokeCoffee/SpokeCoffee-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv6 armv7s armv7 arm64 arm6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -555,7 +557,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpokeCoffee/SpokeCoffee-Prefix.pch";
 				INFOPLIST_FILE = "SpokeCoffee/SpokeCoffee-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv6 armv7s armv7 arm64 arm6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

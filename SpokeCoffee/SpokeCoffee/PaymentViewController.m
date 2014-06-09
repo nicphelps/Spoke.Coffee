@@ -18,13 +18,10 @@
 
 
 
-#define STRIPE_TEST_KEY @"pk_test_QPlAOHwkAsMjQJE7RF7snZjx" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-#define STRIPE_PUBLISHABLE_KEY @"pk_live_vhP9dqeDNYR9HSNyxqWSMpxO" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+#define STRIPE_TEST_KEY @"pk_test_xxxxxxxxxxxxxxxxxxxx"
+#define STRIPE_PUBLISHABLE_KEY @"pk_live_xxxxxxxxxxxxxxxxxxxx" 
 
-#define STRIPE_SECRET_KEY @"sk_test_zgeYzaqcE6YXyI6WvpLYJBun" //@"pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-#define API_URL @"http://spoke.coffee/charge"
-//#define API_URL @"http://spoke-stage.herokuapp.com/charge"
-//#define API_URL @"http://10.1.10.88:9393/charge"
+#define API_URL @"http://yoururl.com"
 
 
 
